@@ -1,0 +1,59 @@
+<form [formGroup]="vehicleForm" class="row g-3" (ngSubmit)="onSubmit()">
+    <div class="col-md-6">
+        <label class="form-label" for="vehicleTypeSelect">Tipo de vehículo</label>
+        <select class="form-select" id="vehicleTypeSelect" formControlName="vehicleTypeId">
+            <option *ngFor="let vehicleType of vehiclesType" [value]="vehicleType.id">{{ vehicleType.name }}
+            </option>
+
+        </select>
+        <div *ngIf="
+        vehicleForm.controls['vehicleTypeId'].invalid &&
+          (vehicleForm.controls['vehicleTypeId'].dirty || vehicleForm.controls['vehicleTypeId'].touched)
+        " class="alert alert-danger">
+            <div *ngIf="vehicleForm.controls['vehicleTypeId'].getError('required')">
+                Tipo de vehículo es requerido
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <label for="price" class="form-label">Precio</label>
+        <input type="number" class="form-control" id="price" formControlName="price">
+        <div *ngIf="
+        vehicleForm.controls['price'].invalid &&
+          (vehicleForm.controls['price'].dirty || vehicleForm.controls['price'].touched)
+        " class="alert alert-danger">
+            <div *ngIf="vehicleForm.controls['price'].getError('required')">
+                Precio es requerido
+            </div>
+        </div>
+    </div>
+    <div class="col-md-12">
+        <label for="description" class="label">Descripción</label>
+        <input type="text" class="form-control" id="description" formControlName="description" required>
+        <div *ngIf="
+      vehicleForm.controls['description'].invalid &&
+        (vehicleForm.controls['description'].dirty || vehicleForm.controls['description'].touched)
+      " class="alert alert-danger">
+            <div *ngIf="vehicleForm.controls['description'].getError('required')">
+                Descripción es requerida
+            </div>
+        </div>
+    </div>
+    <div class="col-md-12">
+        <div class="form-check">
+            <input class="form-check-input" type="checkbox" id="available" formControlName="available">
+            <label class="form-check-label" for="available">
+                Disponible a la venta
+            </label>
+        </div>
+    </div>
+</form>
+<hr>
+<div class="row justify-content-start">
+    <div class="col-4">
+        <button class="btn btn-success" (click)="onSubmit()">Guardar</button>
+    </div>
+    <div class="col-4">
+        <button class="btn btn-success" (click)="goBack()">Regresar</button>
+    </div>
+</div>

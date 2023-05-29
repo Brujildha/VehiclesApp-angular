@@ -1,0 +1,8 @@
+<div *ngIf="errorFound" class="alert alert-danger">
+    No hay vehículos que mostrar
+</div>
+<div *ngIf="!errorFound" class="row">
+    <div class="col">
+        <vehicles-table [vehicles]="vehicles"></vehicles-table>
+    </div>
+</div>
